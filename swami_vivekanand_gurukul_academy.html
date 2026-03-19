@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Swami Vivekanand Gurukul Academy – Baramati's Trusted Coaching</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/*
+  COLOR PALETTE — extracted from logo:
+  Primary Orange/Saffron : #D4621A  (Swami's robe, institute name text)
+  Deep Orange Dark       : #A44510  (shadow on robe)
+  Gold Ring Outer        : #C8860A  (outer gold border of logo)
+  Gold Ring Light        : #F0C040  (highlight of gold ring)
+  Gold Mid               : #E8A820  (book, mid gold)
+  Warm Cream/Ivory       : #FFF5E0  (inner circle background)
+  Dark Brown/Maroon      : #2A1200  (very dark base, text)
+  Temple Grey-White      : #F4F0EA  (section backgrounds)
+  Deep Charcoal          : #1C0E00  (footer, deep sections)
+*/
+:root {
+  --orange:        #D4621A;
+  --orange-dark:   #A44510;
+  --orange-deep:   #7D2E06;
+  --gold:          #C8860A;
+  --gold-light:    #F0C040;
+  --gold-mid:      #E8A820;
+  --cream:         #FFF5E0;
+  --cream-dark:    #FFE8B2;
+  --ivory:         #FDF6EC;
+  --brown-dark:    #2A1200;
+  --brown-mid:     #5A2D00;
+  --charcoal:      #1C0E00;
+  --temple-bg:     #F7F0E4;
+  --white:         #FFFFFF;
+  --text-dark:     #1E0D00;
+  --text-body:     #4A2800;
+  --text-muted:    #8A6040;
+  --radius:        18px;
+  --radius-sm:     10px;
+  --shadow:        0 6px 30px rgba(42,18,0,0.10);
+  --shadow-lg:     0 20px 60px rgba(42,18,0,0.18);
+  --transition:    0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--ivory);color:var(--text-dark);overflow-x:hidden;line-height:1.6}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.25}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:var(--orange);border-radius:10px}
+
+/* ===== ANNOUNCE BAR ===== */
+.announce-bar{
+  background:var(--charcoal);
+  color:var(--gold-light);
+  padding:10px 20px;
+  font-size:.82rem;font-weight:600;letter-spacing:.04em;
+  overflow:hidden;position:relative;
+}
+.announce-bar span{display:inline-block;animation:marquee 24s linear infinite;white-space:nowrap}
+@keyframes marquee{from{transform:translateX(50vw)}to{transform:translateX(-100%)}}
+
+/* ===== NAVBAR ===== */
+nav{
+  background:var(--white);
+  border-bottom:2px solid var(--cream-dark);
+  position:sticky;top:0;z-index:999;
+  padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:72px;
+  box-shadow:0 2px 16px rgba(42,18,0,.08);
+}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo img{
+  height:54px;width:54px;object-fit:contain;border-radius:50%;
+  border:2px solid var(--gold-mid);
+  box-shadow:0 2px 10px rgba(200,134,10,.25);
+}
+.nav-logo-text strong{
+  font-family:'Playfair Display',serif;font-size:.96rem;
+  color:var(--brown-dark);line-height:1.2;display:block;
+}
+.nav-logo-text span{font-size:.7rem;color:var(--orange);font-weight:700;letter-spacing:.05em}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-size:.87rem;font-weight:600;color:var(--text-body);transition:color var(--transition)}
+.nav-links a:hover{color:var(--orange)}
+.nav-cta{
+  background:linear-gradient(135deg,var(--orange),var(--orange-dark))!important;
+  color:white!important;padding:9px 22px;border-radius:50px;
+  font-weight:700!important;box-shadow:0 4px 14px rgba(212,98,26,.4);
+  transition:transform var(--transition),box-shadow var(--transition)!important;
+}
+.nav-cta:hover{transform:scale(1.04);box-shadow:0 6px 20px rgba(212,98,26,.55)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px}
+.hamburger span{width:24px;height:2.5px;background:var(--brown-dark);border-radius:4px;transition:var(--transition)}
+.mob-menu{
+  display:none;position:fixed;top:72px;left:0;right:0;
+  background:var(--white);padding:20px 5% 30px;
+  box-shadow:var(--shadow-lg);z-index:998;
+  flex-direction:column;gap:14px;
+  border-top:3px solid var(--gold-mid);
+}
+.mob-menu a{font-weight:600;color:var(--text-body);font-size:1rem;padding:9px 0;border-bottom:1px solid var(--cream-dark)}
+.mob-menu.open{display:flex}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;min-height:92vh;
+  display:flex;align-items:center;
+  overflow:hidden;background:var(--charcoal);
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  filter:brightness(.18) saturate(.5);z-index:0;
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 70% 50%, rgba(212,98,26,.28) 0%, transparent 55%),
+    radial-gradient(circle at 15% 70%, rgba(200,134,10,.18) 0%, transparent 50%),
+    linear-gradient(160deg, rgba(42,18,0,.7) 0%, transparent 60%);
+  z-index:1;
+}
+/* decorative gold arc at top */
+.hero-arc{
+  position:absolute;top:-80px;right:-80px;
+  width:400px;height:400px;border-radius:50%;
+  border:40px solid rgba(240,192,64,.06);z-index:1;
+}
+.hero-arc2{
+  position:absolute;bottom:-60px;left:-60px;
+  width:300px;height:300px;border-radius:50%;
+  border:30px solid rgba(212,98,26,.07);z-index:1;
+}
+.hero-content{
+  position:relative;z-index:2;max-width:1200px;margin:0 auto;
+  padding:80px 5%;display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:center;width:100%;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(240,192,64,.15);border:1px solid rgba(240,192,64,.4);
+  color:var(--gold-light);padding:6px 16px;border-radius:50px;
+  font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  margin-bottom:20px;animation:fadeUp .6s ease both;
+}
+.hero h1{font-size:clamp(2rem,4vw,3.4rem);color:var(--white);margin-bottom:16px;animation:fadeUp .7s .1s ease both}
+.hero h1 em{
+  color:var(--gold-light);font-style:normal;
+  background:linear-gradient(90deg,var(--gold-light),var(--gold-mid));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{font-size:1.05rem;color:rgba(255,240,210,.85);margin-bottom:12px;font-weight:500;animation:fadeUp .7s .2s ease both}
+.hero-trust{display:flex;align-items:center;gap:8px;color:var(--gold-light);font-size:.92rem;font-weight:700;margin-bottom:34px;animation:fadeUp .7s .3s ease both}
+.stars{color:var(--gold-light);letter-spacing:2px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .7s .4s ease both}
+
+.btn-primary{
+  background:linear-gradient(135deg,var(--orange),var(--orange-dark));
+  color:white;padding:14px 30px;border-radius:50px;font-weight:700;font-size:1rem;
+  display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:none;
+  box-shadow:0 6px 22px rgba(212,98,26,.45);
+  transition:transform var(--transition),box-shadow var(--transition);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(212,98,26,.58)}
+.btn-wa{
+  background:#25D366;color:white;padding:14px 30px;border-radius:50px;
+  font-weight:700;font-size:1rem;display:inline-flex;align-items:center;gap:8px;
+  cursor:pointer;border:none;box-shadow:0 6px 22px rgba(37,211,102,.35);
+  transition:background var(--transition),transform var(--transition);
+}
+.btn-wa:hover{background:#1ebe5a;transform:translateY(-2px)}
+.btn-outline{
+  background:transparent;color:var(--gold-light);padding:13px 26px;border-radius:50px;
+  font-weight:700;font-size:.92rem;display:inline-flex;align-items:center;gap:8px;
+  cursor:pointer;border:2px solid rgba(240,192,64,.45);
+  transition:border-color var(--transition),background var(--transition),color var(--transition);
+}
+.btn-outline:hover{border-color:var(--gold-light);background:rgba(240,192,64,.08);color:white}
+
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;animation:fadeUp .7s .5s ease both}
+.stat-card{
+  background:rgba(255,245,224,.07);
+  border:1px solid rgba(240,192,64,.18);
+  backdrop-filter:blur(12px);
+  border-radius:var(--radius);padding:24px 18px;text-align:center;
+  transition:transform var(--transition),background var(--transition);
+}
+.stat-card:hover{transform:translateY(-4px);background:rgba(255,245,224,.12)}
+.stat-num{
+  font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;
+  background:linear-gradient(135deg,var(--gold-light),var(--gold-mid));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;
+}
+.stat-label{font-size:.78rem;color:rgba(255,240,210,.7);margin-top:6px;font-weight:500}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== COUNTDOWN ===== */
+.countdown-section{
+  background:linear-gradient(135deg,var(--orange) 0%,var(--orange-dark) 60%,var(--orange-deep) 100%);
+  padding:26px 5%;text-align:center;color:white;
+  position:relative;overflow:hidden;
+}
+.countdown-section::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0px,rgba(255,255,255,.04) 1px,transparent 1px,transparent 40px);
+}
+.countdown-section p{font-size:1rem;font-weight:700;margin-bottom:14px;opacity:.96;position:relative;z-index:1}
+.countdown-timer{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
+.time-block{
+  background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.25);
+  border-radius:12px;padding:12px 18px;min-width:68px;text-align:center;
+  backdrop-filter:blur(4px);
+}
+.time-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;line-height:1;display:block}
+.time-label{font-size:.67rem;text-transform:uppercase;letter-spacing:.09em;opacity:.85;margin-top:4px;display:block}
+.time-sep{font-size:2rem;font-weight:900;opacity:.6}
+
+/* ===== SECTIONS ===== */
+section{padding:80px 5%}
+.section-header{text-align:center;margin-bottom:52px}
+.section-tag{
+  display:inline-block;
+  background:var(--cream-dark);color:var(--orange);
+  padding:5px 16px;border-radius:50px;
+  font-size:.76rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:12px;
+}
+.section-header h2{font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--brown-dark);margin-bottom:12px}
+.section-header p{color:var(--text-muted);font-size:1rem;max-width:540px;margin:0 auto}
+.max-w{max-width:1200px;margin:0 auto}
+
+/* ===== RESULTS ===== */
+.results-section{background:var(--temple-bg)}
+.results-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.result-card{
+  background:var(--white);border-radius:var(--radius);padding:30px 24px;
+  text-align:center;box-shadow:var(--shadow);
+  border-top:4px solid var(--orange);
+  position:relative;overflow:hidden;
+  transition:transform var(--transition),box-shadow var(--transition);
+}
+.result-card::after{
+  content:'';position:absolute;bottom:-20px;right:-20px;
+  width:80px;height:80px;border-radius:50%;
+  background:radial-gradient(circle,rgba(212,98,26,.08),transparent 70%);
+}
+.result-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.result-percent{
+  font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;
+  background:linear-gradient(135deg,var(--orange),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;
+}
+.result-desc{color:var(--text-body);font-size:.92rem;margin-top:10px;font-weight:500}
+.result-name{margin-top:10px;font-size:.76rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.improvement-band{
+  margin-top:44px;
+  background:linear-gradient(135deg,var(--brown-dark) 0%,var(--brown-mid) 100%);
+  border-radius:var(--radius);padding:34px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:22px;align-items:center;text-align:center;
+  border:2px solid rgba(240,192,64,.2);
+}
+.improvement-item{color:white}
+.improvement-item strong{
+  font-family:'Playfair Display',serif;font-size:1.5rem;
+  background:linear-gradient(135deg,var(--gold-light),var(--gold-mid));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  display:block;
+}
+.improvement-item span{font-size:.82rem;opacity:.75;margin-top:4px;display:block}
+
+/* ===== TRUST ===== */
+.trust-section{background:var(--ivory)}
+.trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+.trust-points{display:flex;flex-direction:column;gap:16px}
+.trust-point{
+  display:flex;gap:14px;align-items:flex-start;
+  background:var(--cream);border:1px solid var(--cream-dark);
+  padding:18px;border-radius:var(--radius-sm);
+  transition:transform var(--transition),box-shadow var(--transition);
+}
+.trust-point:hover{transform:translateX(6px);box-shadow:var(--shadow)}
+.trust-icon{
+  font-size:1.5rem;width:48px;height:48px;
+  display:flex;align-items:center;justify-content:center;
+  background:white;border-radius:10px;box-shadow:var(--shadow);
+  flex-shrink:0;
+  border:1px solid var(--cream-dark);
+}
+.trust-text h4{font-family:'DM Sans',sans-serif;font-weight:700;color:var(--brown-dark);font-size:.96rem;margin-bottom:3px}
+.trust-text p{font-size:.84rem;color:var(--text-muted)}
+
+.testimonials{display:flex;flex-direction:column;gap:18px}
+.testi-card{
+  background:linear-gradient(140deg,var(--brown-dark) 0%,var(--brown-mid) 100%);
+  border-radius:var(--radius);padding:26px;color:white;
+  position:relative;overflow:hidden;
+  border:1px solid rgba(240,192,64,.15);
+}
+.testi-card::before{
+  content:'"';position:absolute;top:-14px;right:14px;
+  font-size:7rem;font-family:'Playfair Display',serif;
+  color:rgba(240,192,64,.15);line-height:1;
+}
+.testi-stars{color:var(--gold-light);font-size:.95rem;margin-bottom:10px;letter-spacing:2px}
+.testi-text{font-size:.88rem;opacity:.9;line-height:1.75;margin-bottom:14px}
+.testi-author{display:flex;align-items:center;gap:10px}
+.testi-avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--orange),var(--orange-dark));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:1rem;color:white;flex-shrink:0;
+}
+.testi-info strong{display:block;font-size:.88rem;font-weight:700}
+.testi-info span{font-size:.74rem;opacity:.6}
+
+/* ===== COURSES ===== */
+.courses-section{background:var(--temple-bg)}
+.courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.course-card{
+  background:var(--white);border-radius:var(--radius);padding:30px 24px;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px;
+  transition:transform var(--transition),box-shadow var(--transition);
+  position:relative;overflow:hidden;
+}
+.course-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--orange),var(--gold-mid));
+}
+.course-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.course-icon{font-size:2.2rem}
+.course-card h3{font-family:'DM Sans',sans-serif;font-weight:700;color:var(--brown-dark);font-size:1.05rem}
+.course-card p{font-size:.84rem;color:var(--text-muted);flex:1}
+.course-tag{
+  display:inline-block;background:var(--cream-dark);color:var(--orange);
+  padding:3px 12px;border-radius:50px;font-size:.72rem;font-weight:700;width:fit-content;
+}
+.btn-enroll{
+  background:linear-gradient(135deg,var(--brown-dark),var(--brown-mid));
+  color:white;border:none;padding:10px 20px;border-radius:50px;
+  font-weight:700;font-size:.85rem;cursor:pointer;
+  display:flex;align-items:center;gap:6px;
+  transition:background var(--transition),transform var(--transition);width:fit-content;
+}
+.btn-enroll:hover{background:linear-gradient(135deg,var(--orange),var(--orange-dark));transform:scale(1.03)}
+
+/* ===== LOCATION ===== */
+.location-section{
+  background:linear-gradient(160deg,var(--charcoal) 0%,var(--brown-dark) 100%);
+  color:white;
+}
+.location-section .section-header h2{color:var(--cream)}
+.location-section .section-tag{background:rgba(240,192,64,.15);color:var(--gold-light)}
+.location-section .section-header p{color:rgba(255,240,210,.65)}
+.location-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.location-info{display:flex;flex-direction:column;gap:16px}
+.location-detail{
+  display:flex;gap:14px;align-items:flex-start;
+  background:rgba(255,245,224,.06);border:1px solid rgba(240,192,64,.14);
+  border-radius:var(--radius-sm);padding:18px;
+}
+.location-detail-icon{
+  font-size:1.4rem;width:44px;height:44px;
+  background:rgba(212,98,26,.2);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.location-detail-text strong{display:block;font-weight:700;margin-bottom:3px;font-size:.93rem}
+.location-detail-text span{font-size:.81rem;opacity:.65}
+.map-container{
+  border-radius:var(--radius);overflow:hidden;height:340px;
+  box-shadow:var(--shadow-lg);
+  border:3px solid rgba(240,192,64,.2);
+}
+.map-container iframe{width:100%;height:100%;border:none}
+.btn-directions{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,var(--orange),var(--orange-dark));
+  color:white;padding:12px 24px;border-radius:50px;
+  font-weight:700;font-size:.92rem;
+  transition:transform var(--transition),box-shadow var(--transition);
+  margin-top:6px;width:fit-content;
+  box-shadow:0 4px 16px rgba(212,98,26,.4);
+}
+.btn-directions:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(212,98,26,.55)}
+
+/* ===== CTA SECTION ===== */
+.cta-section{
+  background:linear-gradient(135deg,var(--orange) 0%,var(--orange-dark) 45%,var(--charcoal) 100%);
+  text-align:center;padding:80px 5%;position:relative;overflow:hidden;
+}
+.cta-section::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 20% 50%,rgba(240,192,64,.08) 0%,transparent 50%),
+    radial-gradient(circle at 80% 50%,rgba(255,255,255,.04) 0%,transparent 50%);
+}
+/* gold ring decorations */
+.cta-ring{
+  position:absolute;border-radius:50%;border-style:solid;border-color:rgba(240,192,64,.1);
+}
+.cta-ring1{width:500px;height:500px;top:-200px;right:-150px;border-width:40px}
+.cta-ring2{width:300px;height:300px;bottom:-120px;left:-80px;border-width:25px}
+.cta-section .inner{position:relative;z-index:1;max-width:720px;margin:0 auto}
+.cta-section h2{font-size:clamp(1.9rem,4vw,3rem);color:white;margin-bottom:12px}
+.cta-section p{font-size:1.05rem;color:rgba(255,240,210,.88);margin-bottom:10px}
+.urgency-tag{
+  display:inline-block;
+  background:rgba(240,192,64,.2);border:1px solid rgba(240,192,64,.4);
+  color:var(--gold-light);padding:6px 20px;border-radius:50px;
+  font-size:.8rem;font-weight:700;margin-bottom:28px;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(240,192,64,.3)}50%{opacity:.85;box-shadow:0 0 0 8px rgba(240,192,64,.0)}}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-white{
+  background:white;color:var(--orange);padding:14px 30px;border-radius:50px;
+  font-weight:800;font-size:.97rem;border:none;cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:transform var(--transition),box-shadow var(--transition);
+  box-shadow:0 6px 22px rgba(0,0,0,.18);
+}
+.btn-white:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.25)}
+.btn-white.wa{color:#25D366}
+.btn-white.dark{color:var(--brown-dark)}
+
+/* ===== FAQ ===== */
+.faq-section{background:var(--ivory)}
+.faq-list{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.faq-item{border:2px solid var(--cream-dark);border-radius:var(--radius-sm);overflow:hidden;transition:border-color var(--transition)}
+.faq-item.open{border-color:var(--orange)}
+.faq-q{
+  padding:16px 20px;display:flex;justify-content:space-between;align-items:center;
+  cursor:pointer;background:var(--white);font-weight:600;font-size:.95rem;
+  color:var(--brown-dark);transition:background var(--transition);gap:12px;
+}
+.faq-q:hover{background:var(--cream)}
+.faq-arrow{
+  width:28px;height:28px;background:var(--cream-dark);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;color:var(--orange);flex-shrink:0;
+  transition:transform var(--transition),background var(--transition);
+}
+.faq-item.open .faq-arrow{transform:rotate(180deg);background:var(--orange);color:white}
+.faq-a{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s ease,padding .3s ease;
+  background:var(--cream);font-size:.9rem;color:var(--text-body);line-height:1.7;padding:0 20px;
+}
+.faq-item.open .faq-a{max-height:300px;padding:16px 20px}
+
+/* ===== CONTACT STRIP ===== */
+.contact-strip{
+  background:var(--brown-dark);
+  padding:40px 5%;
+  display:flex;justify-content:center;align-items:center;
+  gap:20px;flex-wrap:wrap;
+  text-align:center;
+}
+.contact-strip-item{
+  display:flex;align-items:center;gap:10px;
+  color:white;font-size:.95rem;font-weight:600;
+  padding:10px 22px;
+  background:rgba(255,245,224,.06);border:1px solid rgba(240,192,64,.18);
+  border-radius:50px;
+  transition:background var(--transition);
+}
+.contact-strip-item:hover{background:rgba(212,98,26,.25)}
+
+/* ===== FOOTER ===== */
+footer{background:var(--charcoal);color:white;padding:60px 5% 28px}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;
+  max-width:1200px;margin:0 auto;
+  padding-bottom:38px;border-bottom:1px solid rgba(240,192,64,.12);
+}
+.footer-brand{display:flex;flex-direction:column;gap:16px}
+.footer-logo{display:flex;align-items:center;gap:12px}
+.footer-logo img{
+  width:54px;height:54px;border-radius:50%;object-fit:contain;
+  border:2px solid rgba(240,192,64,.4);
+}
+.footer-logo-text strong{font-family:'Playfair Display',serif;font-size:1.02rem;display:block}
+.footer-logo-text span{font-size:.7rem;color:var(--gold-light)}
+.footer-brand p{font-size:.84rem;opacity:.65;line-height:1.7;color:rgba(255,240,210,.8)}
+.footer-socials{display:flex;gap:10px}
+.social-btn{
+  width:38px;height:38px;border-radius:50%;
+  border:1px solid rgba(240,192,64,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;transition:background var(--transition),border-color var(--transition);cursor:pointer;
+}
+.social-btn:hover{background:var(--orange);border-color:var(--orange)}
+.footer-col h4{
+  font-family:'DM Sans',sans-serif;font-weight:700;font-size:.83rem;
+  text-transform:uppercase;letter-spacing:.08em;color:var(--gold-light);margin-bottom:16px;
+}
+.footer-col ul{display:flex;flex-direction:column;gap:10px}
+.footer-col ul li a{font-size:.84rem;opacity:.6;transition:opacity var(--transition),color var(--transition)}
+.footer-col ul li a:hover{opacity:1;color:var(--gold-light)}
+.footer-bottom{
+  max-width:1200px;margin:24px auto 0;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:10px;font-size:.77rem;opacity:.45;
+}
+
+/* ===== GOLD DIVIDER ===== */
+.gold-divider{
+  height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold-mid),var(--gold-light),var(--gold-mid),transparent);
+}
+
+/* ===== FLOATING BTNS ===== */
+.floating-btns{position:fixed;bottom:26px;right:18px;display:flex;flex-direction:column;gap:12px;z-index:1000}
+.float-btn{
+  width:56px;height:56px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;box-shadow:0 6px 20px rgba(0,0,0,.22);
+  cursor:pointer;transition:transform var(--transition),box-shadow var(--transition);
+  text-decoration:none;border:none;position:relative;
+}
+.float-btn:hover{transform:scale(1.12);box-shadow:0 10px 28px rgba(0,0,0,.3)}
+.float-call{background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:white}
+.float-wa{background:#25D366;color:white}
+.float-tooltip{
+  position:absolute;right:66px;
+  background:var(--brown-dark);color:white;
+  padding:5px 12px;border-radius:8px;
+  font-size:.76rem;font-weight:600;white-space:nowrap;
+  pointer-events:none;opacity:0;transform:translateX(8px);
+  transition:opacity .2s,transform .2s;
+}
+.float-btn:hover .float-tooltip{opacity:1;transform:translateX(0)}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .hero-content{grid-template-columns:1fr}
+  .hero-stats{grid-template-columns:repeat(4,1fr);gap:10px}
+  .stat-num{font-size:1.5rem}
+  .trust-grid{grid-template-columns:1fr}
+  .location-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  section{padding:60px 5%}
+  .hero-stats{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .cta-btns{flex-direction:column;align-items:center}
+  .improvement-band{grid-template-columns:1fr 1fr}
+  .hero-content{padding:60px 5%}
+  .contact-strip{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce-bar">
+  <span>🎓 New Batch Starting Soon &nbsp;|&nbsp; Limited Seats – Admissions Open for Class 5–12, JEE / NEET / CET &nbsp;|&nbsp; 📞 +91 8600126868 &nbsp;|&nbsp; ⭐ Rated 5.0 by Students &amp; Parents &nbsp;|&nbsp; Baramati MIDC, near VP College &amp; Bank of Maharashtra 🏆</span>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <img src="logo1.jpg" alt="Swami Vivekanand Gurukul Academy"/>
+    <div class="nav-logo-text">
+      <strong>Swami Vivekanand<br/>Gurukul Academy</strong>
+      <span>Baramati, Maharashtra</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#results">Results</a></li>
+    <li><a href="#trust">Why Us</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="tel:+918600126868" class="nav-cta">📞 Call Now</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mob-menu" id="mobMenu">
+  <a href="#results" onclick="closeMob()">📊 Results</a>
+  <a href="#trust" onclick="closeMob()">💛 Why Us</a>
+  <a href="#courses" onclick="closeMob()">📘 Courses</a>
+  <a href="#location" onclick="closeMob()">📍 Location</a>
+  <a href="#faq" onclick="closeMob()">❓ FAQ</a>
+  <a href="tel:+918600126868" style="background:linear-gradient(135deg,#D4621A,#A44510);color:white;text-align:center;padding:12px 24px;border-radius:50px;margin-top:4px;font-weight:700;">📞 Call Now</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg" style="background-image:url('classroom.jpg')"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-arc"></div>
+  <div class="hero-arc2"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-badge">🏆 Baramati's Most Trusted Coaching</div>
+      <h1>Coaching for <em>Academic Excellence</em> in Baramati</h1>
+      <p class="hero-sub">Expert Faculty &nbsp;|&nbsp; Proven Results &nbsp;|&nbsp; Personal Attention</p>
+      <div class="hero-trust">
+        <span class="stars">★★★★★</span>
+        <span>Rated 5.0 by Students &amp; Parents</span>
+      </div>
+      <div class="hero-btns">
+        <a href="tel:+918600126868" class="btn-primary">📞 Call Now</a>
+        <a href="https://wa.me/918600126868?text=Hi%2C%20I%20want%20to%20know%20more%20about%20admissions%20at%20Swami%20Vivekanand%20Gurukul%20Academy" target="_blank" class="btn-wa">💬 WhatsApp</a>
+        <a href="#courses" class="btn-outline">View Courses</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card"><div class="stat-num">500+</div><div class="stat-label">Students Taught</div></div>
+      <div class="stat-card"><div class="stat-num">95%</div><div class="stat-label">Pass Rate</div></div>
+      <div class="stat-card"><div class="stat-num">10+</div><div class="stat-label">Years Experience</div></div>
+      <div class="stat-card"><div class="stat-num">5.0⭐</div><div class="stat-label">Parent Rating</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- COUNTDOWN -->
+<div class="countdown-section">
+  <p>⏰ New Batch Admissions Closing In — Hurry, Limited Seats!</p>
+  <div class="countdown-timer">
+    <div class="time-block"><span class="time-num" id="cd-days">07</span><span class="time-label">Days</span></div>
+    <span class="time-sep">:</span>
+    <div class="time-block"><span class="time-num" id="cd-hours">00</span><span class="time-label">Hours</span></div>
+    <span class="time-sep">:</span>
+    <div class="time-block"><span class="time-num" id="cd-mins">00</span><span class="time-label">Mins</span></div>
+    <span class="time-sep">:</span>
+    <div class="time-block"><span class="time-num" id="cd-secs">00</span><span class="time-label">Secs</span></div>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<section class="results-section" id="results">
+  <div class="max-w">
+    <div class="section-header reveal">
+      <div class="section-tag">🏆 Topper Results</div>
+      <h2>Our Students Achieve Excellent Results</h2>
+      <p>Consistent board exam success driven by concept clarity and dedicated faculty guidance.</p>
+    </div>
+    <div class="results-grid">
+      <div class="result-card reveal">
+        <div class="result-percent">97%</div>
+        <div class="result-desc">Top Scorer – Class 10 Board Exams</div>
+        <div class="result-name">Mathematics &amp; Science</div>
+      </div>
+      <div class="result-card reveal">
+        <div class="result-percent">94%</div>
+        <div class="result-desc">Class 12 Science Stream Excellence</div>
+        <div class="result-name">Physics, Chemistry &amp; Biology</div>
+      </div>
+      <div class="result-card reveal">
+        <div class="result-percent">88%</div>
+        <div class="result-desc">From 55% → 88% in Just 4 Months</div>
+        <div class="result-name">Remarkable Improvement</div>
+      </div>
+      <div class="result-card reveal">
+        <div class="result-percent">92%</div>
+        <div class="result-desc">Consistent Board Exam Success</div>
+        <div class="result-name">Average Score – Class 10</div>
+      </div>
+    </div>
+    <div class="improvement-band reveal">
+      <div class="improvement-item"><strong>"55% → 88%"</strong><span>Class 10 Student in 4 Months</span></div>
+      <div class="improvement-item"><strong>"60% → 91%"</strong><span>Class 12 Commerce Student</span></div>
+      <div class="improvement-item"><strong>"Cleared CET"</strong><span>First Attempt with Good Score</span></div>
+      <div class="improvement-item"><strong>"90%+ Club"</strong><span>Multiple Students Every Year</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- TRUST -->
+<section class="trust-section" id="trust">
+  <div class="max-w">
+    <div class="section-header reveal">
+      <div class="section-tag">💛 Why Parents Choose Us</div>
+      <h2>The Gurukul Difference</h2>
+      <p>Rooted in Swami Vivekanand's values — we nurture both knowledge and character in every student.</p>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-points">
+        <div class="trust-point reveal">
+          <div class="trust-icon">👨‍🏫</div>
+          <div class="trust-text"><h4>Experienced Faculty (10+ Years)</h4><p>Dedicated teachers with proven board and competitive exam coaching expertise.</p></div>
+        </div>
+        <div class="trust-point reveal">
+          <div class="trust-icon">📚</div>
+          <div class="trust-text"><h4>Small Batches, Personal Attention</h4><p>Every student gets individual focus — no child is ever left behind in our batches.</p></div>
+        </div>
+        <div class="trust-point reveal">
+          <div class="trust-icon">🎯</div>
+          <div class="trust-text"><h4>Result-Oriented Teaching</h4><p>Strategic exam prep backed by regular tests, mock exams, and performance tracking.</p></div>
+        </div>
+        <div class="trust-point reveal">
+          <div class="trust-icon">🧠</div>
+          <div class="trust-text"><h4>Strong Concept Clarity Focus</h4><p>Beyond rote learning — students understand fundamentals deeply and apply them with confidence.</p></div>
+        </div>
+        <div class="trust-point reveal">
+          <div class="trust-icon">🏆</div>
+          <div class="trust-text"><h4>Growing Reputation in Baramati</h4><p>Trusted by hundreds of families across Baramati and surrounding areas.</p></div>
+        </div>
+        <div class="trust-point reveal">
+          <div class="trust-icon">⭐</div>
+          <div class="trust-text"><h4>5.0 Rating from Students &amp; Parents</h4><p>Consistently rated Baramati's best coaching institute by our community.</p></div>
+        </div>
+      </div>
+      <div class="testimonials">
+        <div class="testi-card reveal">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Best coaching in Baramati. My daughter improved from 60% to 89% in just one semester. Teachers are incredibly supportive and dedicated to every student."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">S</div>
+            <div class="testi-info"><strong>Sunita Patil</strong><span>Parent of Class 10 Student</span></div>
+          </div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Supportive teachers and great results. My son cleared CET on the first attempt. The concept-clarity approach here is truly different from other institutes."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">R</div>
+            <div class="testi-info"><strong>Rajesh Mane</strong><span>Parent of CET Aspirant</span></div>
+          </div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Small batch size means my child never gets lost in a crowd. Personalized attention made all the difference. Highly recommend to every parent in Baramati!"</p>
+          <div class="testi-author">
+            <div class="testi-avatar">P</div>
+            <div class="testi-info"><strong>Priya Deshmukh</strong><span>Parent of Class 8 Student</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- COURSES -->
+<section class="courses-section" id="courses">
+  <div class="max-w">
+    <div class="section-header reveal">
+      <div class="section-tag">📘 Our Courses</div>
+      <h2>Find the Right Programme</h2>
+      <p>Expertly designed courses from Class 5 all the way to JEE, NEET and CET preparation.</p>
+    </div>
+    <div class="courses-grid">
+      <div class="course-card reveal">
+        <div class="course-icon">🌱</div>
+        <div class="course-tag">Class 5 – 8</div>
+        <h3>Foundation Programme</h3>
+        <p>Build a strong academic base with conceptual clarity in Maths, Science &amp; English for competitive readiness.</p>
+        <a href="https://wa.me/918600126868?text=I%20am%20interested%20in%20the%20Class%205-8%20Foundation%20Programme" target="_blank" class="btn-enroll">Enroll Now →</a>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-icon">📖</div>
+        <div class="course-tag">Class 9 – 10</div>
+        <h3>Board Preparation</h3>
+        <p>Targeted board exam prep with regular mock tests, revision sessions, and personalised doubt-solving.</p>
+        <a href="https://wa.me/918600126868?text=I%20am%20interested%20in%20Class%209-10%20Board%20Preparation" target="_blank" class="btn-enroll">Enroll Now →</a>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-icon">🔬</div>
+        <div class="course-tag">Class 11 – 12</div>
+        <h3>Science &amp; Commerce</h3>
+        <p>In-depth HSC coaching with focus on Physics, Chemistry, Biology and Commerce subjects for top scores.</p>
+        <a href="https://wa.me/918600126868?text=I%20am%20interested%20in%20Class%2011-12%20Programme" target="_blank" class="btn-enroll">Enroll Now →</a>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-icon">🚀</div>
+        <div class="course-tag">Competitive Exams</div>
+        <h3>JEE / NEET / CET</h3>
+        <p>Rigorous preparation with expert mentors, full-length mock tests, and strategy sessions for top results.</p>
+        <a href="https://wa.me/918600126868?text=I%20am%20interested%20in%20JEE%2FNEET%2FCET%20Preparation" target="_blank" class="btn-enroll">Enroll Now →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- LOCATION -->
+<section class="location-section" id="location">
+  <div class="max-w">
+    <div class="section-header reveal">
+      <div class="section-tag">📍 Find Us</div>
+      <h2>Visit Our Academy</h2>
+      <p>Conveniently located in Baramati MIDC — easily accessible from all areas of Baramati.</p>
+    </div>
+    <div class="location-grid">
+      <div class="location-info">
+        <div class="location-detail reveal">
+          <div class="location-detail-icon">🏫</div>
+          <div class="location-detail-text">
+            <strong>Swami Vivekanand Gurukul Academy</strong>
+            <span>Baramati MIDC, near Bank of Maharashtra &amp; VP College, Maharashtra – 413133</span>
+          </div>
+        </div>
+        <div class="location-detail reveal">
+          <div class="location-detail-icon">📞</div>
+          <div class="location-detail-text">
+            <strong>Phone / WhatsApp</strong>
+            <span>+91 8600126868</span>
+          </div>
+        </div>
+        <div class="location-detail reveal">
+          <div class="location-detail-icon">🕗</div>
+          <div class="location-detail-text">
+            <strong>Batch Timings</strong>
+            <span>Morning: 7:00 AM – 9:00 AM &nbsp;|&nbsp; Evening: 5:00 PM – 8:00 PM</span>
+          </div>
+        </div>
+        <div class="location-detail reveal">
+          <div class="location-detail-icon">📅</div>
+          <div class="location-detail-text">
+            <strong>Working Days</strong>
+            <span>Monday to Saturday (Sunday special doubt sessions)</span>
+          </div>
+        </div>
+        <a href="https://maps.app.goo.gl/xsRUJjkYcyP4HntW8" target="_blank" class="btn-directions reveal">📍 Get Directions on Google Maps</a>
+      </div>
+      <div class="map-container reveal">
+        <iframe
+          src="https://maps.google.com/maps?q=Baramati+MIDC,+Maharashtra+413133&output=embed&z=15"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Academy Location">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="cta-ring cta-ring1"></div>
+  <div class="cta-ring cta-ring2"></div>
+  <div class="inner">
+    <div class="urgency-tag">🔥 Only Few Seats Left — Act Now!</div>
+    <h2>Limited Seats Available –<br/>Secure Your Child's Future Today</h2>
+    <p>New Batch Starting Soon. Don't miss this opportunity for your child's academic transformation.</p>
+    <p style="opacity:.7;font-size:.88rem;margin-bottom:28px;font-style:italic;">"Arise, awake and stop not until the goal is reached" — Swami Vivekanand</p>
+    <div class="cta-btns">
+      <a href="tel:+918600126868" class="btn-white">📞 Call Now</a>
+      <a href="https://wa.me/918600126868?text=Hi%2C%20I%20want%20to%20enroll%20at%20Swami%20Vivekanand%20Gurukul%20Academy" target="_blank" class="btn-white wa">💬 WhatsApp Now</a>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="max-w">
+    <div class="section-header reveal">
+      <div class="section-tag">❓ FAQ</div>
+      <h2>Questions Parents Often Ask</h2>
+      <p>We've answered the most common questions to help you make the right choice for your child.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What classes does the academy offer?<div class="faq-arrow">▼</div></div>
+        <div class="faq-a">We offer coaching from Class 5 to Class 12 (Science and Commerce) as well as competitive exam preparation for JEE, NEET, and CET. Each programme is tailored to specific board and exam requirements.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What is the batch size?<div class="faq-arrow">▼</div></div>
+        <div class="faq-a">We maintain small batches to ensure every student gets personal attention. Our teachers know every student by name and track individual progress closely. This is one of our core strengths.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What are the batch timings?<div class="faq-arrow">▼</div></div>
+        <div class="faq-a">We have morning batches from 7:00 AM to 9:00 AM and evening batches from 5:00 PM to 8:00 PM, Monday to Saturday. Special Sunday doubt-clearing sessions are also available for students who need extra support.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How are tests and assessments conducted?<div class="faq-arrow">▼</div></div>
+        <div class="faq-a">We conduct regular unit tests, monthly assessments, and full-length mock exams. Performance reports are shared with parents so they stay informed. Our result-oriented approach ensures students are always exam-ready.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What makes Swami Vivekanand Gurukul Academy different?<div class="faq-arrow">▼</div></div>
+        <div class="faq-a">We are inspired by Swami Vivekanand's values — discipline, character, and excellence. Our focus on concept clarity (not rote learning), small batches, experienced faculty, and consistent results makes us Baramati's most trusted coaching institute. Rated 5.0 stars by our community!</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Where is the academy located?<div class="faq-arrow">▼</div></div>
+        <div class="faq-a">We are located in Baramati MIDC, near Bank of Maharashtra and VP College, Maharashtra – 413133. Easily accessible from all areas of Baramati. Call us at +91 8600126868 for directions.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT STRIP -->
+<div class="contact-strip">
+  <a href="tel:+918600126868" class="contact-strip-item">📞 +91 8600126868</a>
+  <a href="https://wa.me/918600126868" target="_blank" class="contact-strip-item">💬 WhatsApp Chat</a>
+  <a href="https://maps.app.goo.gl/xsRUJjkYcyP4HntW8" target="_blank" class="contact-strip-item">📍 Baramati MIDC, Maharashtra 413133</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="logo1.jpg" alt="Logo"/>
+        <div class="footer-logo-text">
+          <strong>Swami Vivekanand Gurukul Academy</strong>
+          <span>"Arise, awake and stop not until the goal is reached"</span>
+        </div>
+      </div>
+      <p>Baramati's trusted coaching institute for Class 5–12 and competitive exam preparation. Rooted in values, driven by results.</p>
+      <div class="footer-socials">
+        <a href="https://wa.me/918600126868" target="_blank" class="social-btn" title="WhatsApp">💬</a>
+        <a href="tel:+918600126868" class="social-btn" title="Call">📞</a>
+        <a href="https://maps.app.goo.gl/xsRUJjkYcyP4HntW8" target="_blank" class="social-btn" title="Map">📍</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#results">Our Results</a></li>
+        <li><a href="#trust">Why Choose Us</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#location">Location</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul>
+        <li><a href="tel:+918600126868">📞 +91 8600126868</a></li>
+        <li><a href="https://wa.me/918600126868" target="_blank">💬 WhatsApp Us</a></li>
+        <li><a href="https://maps.app.goo.gl/xsRUJjkYcyP4HntW8" target="_blank">📍 Baramati MIDC, near Bank of Maharashtra &amp; VP College, 413133</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Swami Vivekanand Gurukul Academy. All rights reserved.</span>
+    <span>Baramati, Maharashtra – 413133</span>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="floating-btns">
+  <a href="tel:+918600126868" class="float-btn float-call">
+    📞<span class="float-tooltip">Call Us Now</span>
+  </a>
+  <a href="https://wa.me/918600126868?text=Hi%2C%20I%20want%20to%20know%20more%20about%20admissions" target="_blank" class="float-btn float-wa">
+    💬<span class="float-tooltip">WhatsApp Chat</span>
+  </a>
+</div>
+
+<script>
+// MOBILE MENU
+function toggleMenu(){document.getElementById('mobMenu').classList.toggle('open')}
+function closeMob(){document.getElementById('mobMenu').classList.remove('open')}
+
+// COUNTDOWN
+(function(){
+  const end=new Date();
+  end.setDate(end.getDate()+7);
+  end.setHours(23,59,59,0);
+  function tick(){
+    const diff=end-Date.now();
+    if(diff<=0)return;
+    const d=Math.floor(diff/864e5),
+          h=Math.floor(diff%864e5/36e5),
+          m=Math.floor(diff%36e5/6e4),
+          s=Math.floor(diff%6e4/1e3);
+    const p=n=>String(n).padStart(2,'0');
+    document.getElementById('cd-days').textContent=p(d);
+    document.getElementById('cd-hours').textContent=p(h);
+    document.getElementById('cd-mins').textContent=p(m);
+    document.getElementById('cd-secs').textContent=p(s);
+  }
+  tick();setInterval(tick,1000);
+})();
+
+// SCROLL REVEAL
+(function(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+})();
+
+// FAQ
+function toggleFaq(el){
+  const item=el.closest('.faq-item');
+  const open=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!open)item.classList.add('open');
+}
+
+// STICKY NAV
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').style.boxShadow=
+    window.scrollY>10?'0 4px 24px rgba(42,18,0,.14)':'0 2px 16px rgba(42,18,0,.08)';
+});
+
+// CLOSE MENU ON NAV CLICK
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',()=>document.getElementById('mobMenu').classList.remove('open'));
+});
+</script>
+</body>
+</html>
